@@ -29,7 +29,7 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
+    <title><%= current_page.data.title || "Open Sigma" %></title>
 
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
@@ -62,8 +62,23 @@ under the License.
         <%= image_tag('navbar.png') %>
       </span>
     </a>
+    <%# HEADER %>
+    <div class="navbar-container">
+      <nav class="navbar">
+        <a class="logo-container" href="/">
+          <span >
+          <%= image_tag "open_sigma_white.png", class: 'nav-logo' %>
+          </span>
+        </a>
+      </nav>
+    </div>
+    <%#  END HEADER  %>
     <div class="toc-wrapper">
+    <% 
+=begin %> 
       <%= image_tag "logo.png", class: 'logo' %>
+      <% 
+=end %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -75,6 +90,14 @@ under the License.
           <% end %>
         </div>
       <% end %>
+      <div>
+              <ul style="padding: 0 15px 0 15px;">
+        <li id="vtwo-link1" style="font-size: 14px;color: #595864;"><a href="/">Home</a></li>
+          <li id="vtwo-link1" style="font-size: 14px;color: #595864;"><a href="/basics">Basics</a></li>
+          <li id="vtwo-link2" style="font-size: 14px;color: #595864;"><a href="/api/v2/orders/">Linear Regression</a></li>
+          <li id="vtwo-link3" style="font-size: 14px;color: #595864;"><a href="/api/v2/customers/">Logistic Regression</a></li>
+        </ul>
+        </div>
       <% if current_page.data.search %>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -82,6 +105,7 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <ul id="toc" class="toc-list-h1">
+
         <% toc_data(page_content).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
@@ -106,23 +130,40 @@ under the License.
       <% end %>
     </div>
     <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <%= page_content %>
+      <div>
+      <% if current_page.data.title == 'Open Sigma'%>
+        <div class="content-full">
+          <%= page_content %>
+        </div>
+      <% else %>
+        <div class="dark-box"></div>
+        <div class="content">
+          <%= page_content %>
+        </div>
+      <% end %>
       </div>
-      <div class="dark-box">
-        <% if language_tabs.any? %>
-          <div class="lang-selector">
-            <% language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-              <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
-              <% end %>
+
+      <div>
+      <% if current_page.data.title != 'Open Sigma' %>
+        <div class="dark-box">
+          
+          
+            <% if language_tabs.any? %>
+              <div class="lang-selector">
+                <% language_tabs.each do |lang| %>
+                  <% if lang.is_a? Hash %>
+                    <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                  <% else %>
+                    <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
-          </div>
-        <% end %>
-      </div>
+
+        </div>
+       <% end %>
+
+       </div>
     </div>
   </body>
 </html>
