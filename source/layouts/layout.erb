@@ -54,7 +54,14 @@ under the License.
         "HTML-CSS": { 
             preferredFont: "TeX", 
             availableFonts: ["STIX","TeX"], 
-            <%# styles: {".MathJax": {color: "#CCCCCC"}}  %>
+            styles: {
+              ".MathJax": {
+                <%# color: "#CCCCCC", %>
+                "font-size":"30px",
+                
+                <%# "font-size":20px; %>
+                }
+              } 
             }
       });
       </script>
@@ -71,6 +78,7 @@ under the License.
       $(function() { setupCodeCopy(); });
     </script>
     <% end %>
+    <script defer src="https://i.icomoon.io/public/temp/27c63d58a4/UntitledProject/svgxuse.js"></script>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -124,6 +132,9 @@ under the License.
           <li id="vtwo-link1" style="font-size: 14px;color: #595864;"><a href="/basics">Basics</a></li>
           <li id="vtwo-link2" style="font-size: 14px;color: #595864;"><a href="/api/v2/orders/">Linear Regression</a></li>
           <li id="vtwo-link3" style="font-size: 14px;color: #595864;"><a href="/api/v2/customers/">Logistic Regression</a></li>
+          
+                
+            
         </ul>
         </div>
       <% if current_page.data.search %>

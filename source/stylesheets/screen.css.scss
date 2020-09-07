@@ -2,6 +2,12 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon-font';
+@import url("./scss/font-awesome.scss");
+@import 'scss/fontawesome.scss';
+@import "scss/solid.scss";
+@import "scss/brands.scss";
+
+// @import 'font-awesome';
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -883,4 +889,125 @@ html, body {
 .MathJax_Display {
   text-align: left;
   display: inline !important;
+}
+
+@media (max-width: $phone-width) {
+  .sub-page {
+    width: 100% !important;
+  }
+}
+
+// work for boxes
+
+.box-holder-main {
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+.box-holder {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1em;
+  width: 100%;
+}
+.test-box {
+  height: 100px;
+  width: 200px;
+  background-color: #eee;
+  text-align: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  box-shadow: 0 2.6px 3.6px 0 lightgray,0 .3px .9px 0 lightgray;
+  
+  &:hover {
+    box-shadow: 0 6.4px 14.4px 0 gray,0 1.2px 3.6px 0 lightgray !important;
+    transition: all .3s cubic-bezier(.8,0,.2,1);
+  }
+}
+.test-box-ref {
+  height: 50px;
+  width: 25%;
+  background-color: #eee;
+  text-align: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#eef3f6;
+  box-shadow: 0 2.6px 3.6px 0 lightgray,0 .3px .9px 0 lightgray;
+  text-decoration: none;
+  &:hover {
+    box-shadow: 0 6.4px 14.4px 0 gray,0 1.2px 3.6px 0 lightgray !important;
+    transition: all .3s cubic-bezier(.8,0,.2,1);
+  }
+}
+
+.home-ref-block {
+  height:200px;
+  width:100%;
+  background-color: white;
+  // display: flex;
+  // justify-content: space-evenly;
+  // align-items: center;
+}
+.ref-text-holder {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.inner-text-ref {
+  display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.mathjax-hack {
+  padding: 0 0 .5em;
+}
+.user {
+  @extend %fa-icon;
+  @extend .fas;
+
+  &:before {
+    content: fa-content($fa-var-user);
+  }
+}
+
+.twitter {
+  @extend %fa-icon;
+  @extend .fab;
+
+  &:before {
+    content: fa-content($fa-var-twitter);
+  }
+}
+
+.icon-tester {
+  color:gray;
+}
+
+.h1-override {
+  padding-left:28px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: .75em;
+}
+
+@media (max-width: $phone-width) {
+  .home-ref-block {
+    height:100%;
+  }
+  .box-holder {
+    flex-direction:column;
+    align-items: center;
+  }
+  .test-box-ref {
+    margin:7px;
+    width:75%;
+  }
 }
