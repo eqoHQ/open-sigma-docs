@@ -30,7 +30,7 @@ under the License.
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "Open Sigma" %></title>
-
+    <%= favicon_tag 'open_sigma_main.png' %>
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
     </style>
@@ -40,6 +40,24 @@ under the License.
       }
       <%= Rouge::Themes::Base16::Solarized.render(:scope => '.highlight') %>
     </style>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$', '$'] ],
+          displayMath: [ ['$$', '$$']],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        messageStyle: "none",
+        "HTML-CSS": { 
+            preferredFont: "TeX", 
+            availableFonts: ["STIX","TeX"], 
+            <%# styles: {".MathJax": {color: "#CCCCCC"}}  %>
+            }
+      });
+      </script>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
@@ -63,6 +81,7 @@ under the License.
       </span>
     </a>
     <%# HEADER %>
+    <% if current_page.data.title == 'Open Sigma' %>
     <div class="navbar-container">
       <nav class="navbar">
         <a class="logo-container" href="/">
@@ -72,13 +91,22 @@ under the License.
         </a>
       </nav>
     </div>
+    <% else %>
+    <div class="navbar-container ">
+      <nav class="navbar sub-page">
+        <a class="logo-container" href="/">
+          <span >
+          <%= image_tag "open_sigma_white.png", class: 'nav-logo' %>
+          </span>
+        </a>
+      </nav>
+    </div>
+    <% end %>
     <%#  END HEADER  %>
+    
+   
+    <div>
     <div class="toc-wrapper">
-    <% 
-=begin %> 
-      <%= image_tag "logo.png", class: 'logo' %>
-      <% 
-=end %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -131,12 +159,13 @@ under the License.
     </div>
     <div class="page-wrapper">
       <div>
-      <% if current_page.data.title == 'Open Sigma'%>
+      <% if current_page.data.title == 'Open Sigma' or current_page.data.title == 'Sources' %>
         <div class="content-full">
           <%= page_content %>
         </div>
       <% else %>
         <div class="dark-box"></div>
+        <%# <div style="height:15px;background-color:#ff937b;"></div> %>
         <div class="content">
           <%= page_content %>
         </div>
@@ -144,26 +173,26 @@ under the License.
       </div>
 
       <div>
-      <% if current_page.data.title != 'Open Sigma' %>
-        <div class="dark-box">
-          
-          
-            <% if language_tabs.any? %>
-              <div class="lang-selector">
-                <% language_tabs.each do |lang| %>
-                  <% if lang.is_a? Hash %>
-                    <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-                  <% else %>
-                    <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+        <% if current_page.data.title == 'Open Sigma' or current_page.data.title == 'Sources' %>
+          <div>
+          </div>
+        <% else %>
+          <div class="dark-box">
+              <% if language_tabs.any? %>
+                <div class="lang-selector">
+                  <% language_tabs.each do |lang| %>
+                    <% if lang.is_a? Hash %>
+                      <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                    <% else %>
+                      <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </div>
-            <% end %>
-
-        </div>
-       <% end %>
-
+                </div>
+              <% end %>
+          </div>
+          <% end %>
        </div>
+    </div>
     </div>
   </body>
 </html>

@@ -5,11 +5,11 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
   - python
-  - javascript
+  - python [keras]
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='/sources'>Sources for Research</a>
 
 includes:
   - errors
@@ -20,6 +20,14 @@ code_clipboard: true
 ---
 
 # Introduction
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/rscheiwe/master){:target="_blank"}
+
+  <a href="https://mybinder.org/v2/gh/rscheiwe/master" target="_blank">
+      <img alt="binder" src="https://mybinder.org/badge_logo.svg"
+      width=100" height="20">
+  </a>
+
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
